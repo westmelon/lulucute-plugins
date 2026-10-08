@@ -1,0 +1,13 @@
+{
+  "id": "afdian",
+  "name": "爱发电",
+  "type": "bundle",
+  "hosts": [
+    "afdian.com",
+    "*.afdian.com",
+    "afdian.net",
+    "*.afdian.net"
+  ],
+  "apiVersion": 1,
+  "entry": "./index.mjs"
+}

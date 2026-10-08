@@ -1,0 +1,27 @@
+{
+  "id": "lanzou",
+  "name": "蓝奏云",
+  "type": "provider",
+  "hosts": [
+    "lanzou.com",
+    "*.lanzou.com",
+    "lanzoui.com",
+    "*.lanzoui.com",
+    "lanzoux.com",
+    "*.lanzoux.com",
+    "lanzous.com",
+    "*.lanzous.com",
+    "lanzouo.com",
+    "*.lanzouo.com",
+    "lanzoub.com",
+    "*.lanzoub.com",
+    "lanzoue.com",
+    "*.lanzoue.com",
+    "lanzouj.com",
+    "*.lanzouj.com",
+    "lanzouu.com",
+    "*.lanzouu.com"
+  ],
+  "apiVersion": 1,
+  "entry": "./index.mjs"
+}

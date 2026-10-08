@@ -1,0 +1,11 @@
+{
+  "id": "hifiti",
+  "name": "HiFiTi",
+  "type": "forum",
+  "hosts": [
+    "hifiti.com",
+    "*.hifiti.com"
+  ],
+  "apiVersion": 1,
+  "entry": "./index.mjs"
+}

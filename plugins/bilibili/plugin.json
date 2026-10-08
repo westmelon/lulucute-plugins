@@ -1,0 +1,24 @@
+{
+  "id": "bilibili",
+  "name": "Bilibili",
+  "type": "bundle",
+  "hosts": [
+    "bilibili.com",
+    "*.bilibili.com",
+    "b23.tv"
+  ],
+  "loginUrl": "https://passport.bilibili.com/login",
+  "actions": [
+    {
+      "id": "all-parts",
+      "label": "下载全部分 P（一个任务）",
+      "pathPattern": "^/video/(BV[A-Za-z0-9]{10}|av[1-9]\\d*)/?$",
+      "query": {
+        "p": "all"
+      },
+      "taskLabel": "全部分 P"
+    }
+  ],
+  "apiVersion": 1,
+  "entry": "./index.mjs"
+}

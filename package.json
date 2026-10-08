@@ -1,0 +1,13 @@
+{
+  "name": "lulucute-plugins",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test test/afdian-adapter.test.mjs test/bilibili-parser.test.mjs test/hifiti-parser.test.mjs test/baidu-provider.test.mjs",
+    "test:integration": "node --test test/*.test.mjs"
+  }
+}

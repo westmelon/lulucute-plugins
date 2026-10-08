@@ -1,0 +1,10 @@
+{
+  "id": "baidu",
+  "name": "百度网盘",
+  "type": "provider",
+  "hosts": [
+    "pan.baidu.com"
+  ],
+  "apiVersion": 1,
+  "entry": "./index.mjs"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "name": "lulucute-plugins 插件仓库",
+  "plugins": [
+    {
+      "id": "bilibili",
+      "description": "视频、指定或全部分 P、UP 合集与增量下载"
+    },
+    {
+      "id": "afdian",
+      "description": "专辑与动态列表，视频、音频及附件下载"
+    },
+    {
+      "id": "hifiti",
+      "description": "登录检测、帖子解锁与资源链接提取"
+    },
+    {
+      "id": "baidu",
+      "description": "提取码、浏览器下载与官方客户端下载归档"
+    },
+    {
+      "id": "lanzou",
+      "description": "提取码与临时下载链接解析"
+    }
+  ]
+}
