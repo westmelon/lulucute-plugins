@@ -22,7 +22,6 @@ npm run plugins -- install lanzou --repository https://github.com/westmelon/lulu
     "directories": ["./plugins"],
     "enabled": ["bilibili", "afdian", "hifiti", "baidu", "lanzou"],
     "options": {
-      "bilibili": { "ffmpegPath": "ffmpeg", "aria2Path": "aria2c" },
       "baidu": { "timeoutMs": 3600000, "pollIntervalMs": 2000, "quietPeriodMs": 15000 }
     }
   }
@@ -74,7 +73,9 @@ npm start -- --config config.json --login https://afdian.com/album/93148dc0ad381
 
 实现参考 [yutto](https://github.com/yutto-dev/yutto) 的普通投稿信息接口、播放流参数及 FFmpeg 合并流程，不需要安装 Python 或 yutto。视频信息优先读取投稿网页已提供的数据；信息接口返回 HTTP 412 时也会尝试从对应投稿网页读取。
 
-需要可正常运行的 FFmpeg 和 aria2；macOS 可使用 `brew install ffmpeg aria2`，Windows/Linux 安装对应工具并加入 PATH。先执行 `ffmpeg -version` 和 `aria2c --version` 确认安装有效。侧边栏自动启动的服务可能没有终端的 PATH，可在 `config.json` 的 `plugins.options.bilibili` 中填写完整路径：
+通过新版主项目安装或更新 Bilibili 插件时，会按系统和 CPU 架构自动下载 aria2 1.37.0 与 FFmpeg 6.1.1 便携构建，并做 SHA-256 校验。支持 Windows x64、macOS x64/arm64 和 Linux x64/arm64。工具、许可证和来源记录保存在插件的 `.tools` 目录，无需安装到系统或设置 PATH；下载失败不会覆盖原插件。旧安装需要更新一次插件才能取得附带工具。
+
+如需使用自行安装的工具，可在 `config.json` 的 `plugins.options.bilibili` 中填写完整路径：
 
 ```json
 {
@@ -83,7 +84,10 @@ npm start -- --config config.json --login https://afdian.com/album/93148dc0ad381
 }
 ```
 
-默认值分别为 `ffmpeg` 和 `aria2c`。工具缺失或无法启动时，任务显示“需处理”；修复后重试。登录和解析继续使用 Chrome，Bilibili 音视频文件由 aria2 传输，再交给 FFmpeg 合并。下载按当前账号实际可访问的最高画质选择，同画质优先 AVC，音频优先常规最高码率，不转码。未登录账号通常只能取得较低画质。
+显式插件选项、旧 workflow 路径、插件附带工具、系统 PATH 按此顺序选取。已有 `"aria2Path": "aria2c"` 或 `"ffmpegPath": "ffmpeg"` 配置会优先使用系统工具；删除对应选项即可使用附带工具。工具缺失或无法启动时，任务显示“需处理”；修复后重试。
+
+页面点击插件旁的「卸载」并确认，或停止服务后运行 `npm run plugins -- uninstall bilibili --config config.json`，会删除 Bilibili 插件、附带工具及全部更新备份，并移除启用 ID。用户自行安装的工具、已下载视频、队列和登录资料保留。页面卸载会自动重新加载服务；配置保存失败时恢复原插件和备份。
+登录和解析继续使用 Chrome，Bilibili 音视频文件由 aria2 传输，再交给 FFmpeg 合并。下载按当前账号实际可访问的最高画质选择，同画质优先 AVC，音频优先常规最高码率，不转码。未登录账号通常只能取得较低画质。
 
 在插件中切换到 Bilibili 页面，点击“登录 Bilibili”，在弹出的专用 Chrome 窗口中手动登录，然后回到插件点击“完成登录”。登录期间新任务等待，服务不会因空闲自动退出；任务运行中暂不允许打开登录窗口。直接关闭登录窗口也会恢复队列。登录使用下载器资料目录，后续下载复用会话，后台静默运行设置保持原样。“完成登录”只保存并关闭窗口，不代表已确认账号登录成功。
 
